@@ -19,3 +19,12 @@ setuptools.setup(
     packages=['tools'],
     install_requires=['requests'],
 )
+
+Binalar-üyeler-config
+api
+api-gateway
+raporlar
+kurye-user
+ürünler
+bölge
+sipariş-sepet
