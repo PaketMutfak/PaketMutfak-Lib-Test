@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='paketmutfak-tool-box',
-    version='0.0.3',
+    name='paketmutfak_tool_box',
+    version='0.0.4',
     author='Paket Mutfak',
     author_email='dev@paketmutfak.com.tr',
     description='Testing installation of Package',
