@@ -1,2 +1,6 @@
 twine==1.13.0
-
+boto3~=1.24.3
+iso8601~=1.0.2
+slugify~=0.0.1
+PyJWT~=2.4.0
+setuptools~=57.0.0

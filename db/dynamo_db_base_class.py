@@ -1,32 +1,34 @@
 import boto3
-import os
+from boto3.dynamodb.types import TypeSerializer, TypeDeserializer
 
 
 class PmDynamoDb:
-    def __init__(self, region_name):
+    def __init__(self, region_name, aws_access_key_id, aws_secret_access_key):
         try:
-            aws_access_key_id = os.environ.get("aws_access_key_id")
-            aws_secret_access_key = os.environ.get("aws_secret_access_key")
+            self.aws_access_key_id = aws_access_key_id
+            self.aws_secret_access_key = aws_secret_access_key
+
             self.dynamodb = boto3.resource('dynamodb',
                                            region_name=region_name,
-                                           aws_access_key_id=aws_access_key_id,
-                                           aws_secret_access_key=aws_secret_access_key
+                                           aws_access_key_id=self.aws_access_key_id,
+                                           aws_secret_access_key=self.aws_secret_access_key
                                            )
 
-            self.serializer = boto3.dynamodb.types.TypeSerializer()
-            self.deserializer = boto3.dynamodb.types.TypeDeserializer()
+            self.serializer = TypeSerializer()
+            self.deserializer = TypeDeserializer()
 
             self.client = boto3.client('dynamodb',
                                        region_name=region_name,
-                                       aws_access_key_id=aws_access_key_id,
-                                       aws_secret_access_key=aws_secret_access_key)
+                                       aws_access_key_id=self.aws_access_key_id,
+                                       aws_secret_access_key=self.aws_secret_access_key)
         except ConnectionError as err:
             print(err)
 
         except Exception as ex:
             print(ex)
 
-    def transaction_put(self, item, table_name, condition_expression, return_value):
+    @staticmethod
+    def transaction_put(item, table_name, condition_expression, return_value):
 
         dict_put = {
             'Put': {
@@ -39,7 +41,8 @@ class PmDynamoDb:
 
         return dict_put
 
-    def transaction_delete(self, key, table_name, condition_expression, return_value):
+    @staticmethod
+    def transaction_delete(key, table_name, condition_expression, return_value):
 
         dict_delete = {
             'Delete': {
@@ -52,7 +55,8 @@ class PmDynamoDb:
 
         return dict_delete
 
-    def transaction_update(self, key, update_expression, table_name, condition_expression, expression_attribute_names,
+    @staticmethod
+    def transaction_update(key, update_expression, table_name, condition_expression, expression_attribute_names,
                            expression_attribute_values, return_value):
 
         dict_update = {
@@ -69,7 +73,8 @@ class PmDynamoDb:
 
         return dict_update
 
-    def transaction_get(self, key, table_name, condition_expression):
+    @staticmethod
+    def transaction_get(key, table_name, condition_expression):
 
         dict_get = {
             'Get': {
