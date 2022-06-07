@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='paketmutfak',
-    version='0.0.9',
+    version='0.0.10',
     author='Paket Mutfak',
     author_email='dev@paketmutfak.com.tr',
     description='Testing installation of Package',
@@ -16,6 +16,6 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/PaketMutfak/PaketMutfak-Lib-Test/issues"
     },
     license='MIT',
-    packages=['tools'],
+    packages=['tools', 'db'],
     install_requires=['requests'],
 )
