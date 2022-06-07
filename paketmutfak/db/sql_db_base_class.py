@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode, pooling
 from paketmutfak.utils.functions.general import init_extra_log_params, generate_uid
-from paketmutfak.utils.constants import MessageCode
+from paketmutfak.utils.constants.error_codes import MessageCode
 
 
 class PmMysqlBaseClass:
@@ -29,9 +29,9 @@ class PmMysqlBaseClass:
 
     def create_pool(self, pool_name="mypool", pool_size=3):
         """
-        Create a connection pool, after created, the request of connecting
-        MySQL could get a connection from this pool instead of request to
-        create a connection.
+        Create db connection pool, after created, the request of connecting
+        MySQL could get db connection from this pool instead of request to
+        create db connection.
         :param pool_name: the name of pool, default is "mypool"
         :param pool_size: the size of pool, default is 3
         :return: connection pool
@@ -58,7 +58,7 @@ class PmMysqlBaseClass:
 
     def execute(self, sql, args=None, commit=False):
         """
-        Execute a sql, it could be with args and with out args. The usage is
+        Execute db sql, it could be with args and with out args. The usage is
         similar with execute() function in module pymysql.
         :param sql: sql clause
         :param args: args need by sql clause
@@ -107,7 +107,7 @@ class PmMysqlBaseClass:
     def executemany(self, sql, args, commit=False):
         """
         Execute with many args. Similar with executemany() function in pymysql.
-        args should be a sequence.
+        args should be db sequence.
         :param sql: sql clause
         :param args: args
         :param commit: commit or not.

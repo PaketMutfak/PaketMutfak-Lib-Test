@@ -73,7 +73,7 @@ def edit_name_as_shorten(s):
 
     if type(s) != str:
         return s
-    # split the string into a list
+    # split the string into db list
     split_list = s.split()
     if split_list[0] == "Joker" and split_list[1] == "-":
         # for yemekSepeti
@@ -581,7 +581,7 @@ def check_sign_up_data(data):
 
 def is_valid_email(email):
     try:
-        regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+        regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|db-z]{2,}\b'
 
         if re.fullmatch(regex, email):
             return True
