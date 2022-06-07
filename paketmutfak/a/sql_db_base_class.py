@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode, pooling
-from utils.functions.general import init_extra_log_params, generate_uid
-from utils.constants.error_codes import MessageCode
+from paketmutfak.utils.functions.general import init_extra_log_params, generate_uid
+from paketmutfak.utils.constants import MessageCode
 
 
 class PmMysqlBaseClass:

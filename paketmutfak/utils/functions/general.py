@@ -3,15 +3,15 @@ from random import randint, randrange
 from uuid import uuid4
 import iso8601 as iso8601
 import slugify as slugify
-from utils.constants.error_codes import MessageCode
+from paketmutfak.utils.constants.error_codes import MessageCode
 import re
 import jwt
 import math
-from utils.constants.PM import BillingStatus, OrderStatus
-from utils.constants.parameters import PAREKENDE_SATIS_FISI_LIMIT, TOLERANCE_PAYMENT, DYNAMO_DB_NULL_INDEX, \
+from paketmutfak.utils.constants.PM import BillingStatus, OrderStatus
+from paketmutfak.utils.constants.parameters import PAREKENDE_SATIS_FISI_LIMIT, TOLERANCE_PAYMENT, DYNAMO_DB_NULL_INDEX, \
     PAYMENT_PER_BASKET
-from utils.constants.platforms import BrandsPlatformStatus
-from utils.constants.authorizations import permissions
+from paketmutfak.utils.constants.platforms import BrandsPlatformStatus
+from paketmutfak.utils.constants.authorizations import permissions
 from math import sin, radians, cos, asin, sqrt
 
 

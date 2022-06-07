@@ -1,4 +1,4 @@
-from utils.constants.error_codes import MessageCode
+from paketmutfak.utils.constants.error_codes import MessageCode
 
 
 def adress_coordinates_format_checker(address):

@@ -1,6 +1,6 @@
 from random import randint
 from datetime import datetime
-from utils.functions.general import generate_uid
+from paketmutfak.utils.functions.general import generate_uid
 
 
 def get_pm_products_format():
