@@ -48,7 +48,7 @@ class TableNames:
     BASKET_STATUS = "Basket_Status"
     BILLING_STATUS = "Billing_Status"
     BRAND_PLATFORM_REGIONS = "Brand_Platform_Regions"
-    BUILDIN_PM_REGIONS_STATUS = "Building_PM_Regions_Status"
+    BUILDING_PM_REGIONS_STATUS = "Building_PM_Regions_Status"
     BUILDINGS_EMPLOYEES = "Buildings_Employees"
     BUILDINGS_KITCHEN = "Buildings_Kitchen"
     COMMAND_TYPES = "Command_Types"
