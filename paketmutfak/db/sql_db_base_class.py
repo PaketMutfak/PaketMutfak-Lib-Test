@@ -5,7 +5,7 @@ from paketmutfak.utils.constants.error_codes import MessageCode
 
 
 class PmMysqlBaseClass:
-    def __init__(self, host, port, user, password, database, pool_name, table_name, uid_tag, pm_logger, pool_size=10):
+    def __init__(self, host, port, user, password, database, pool_name, table_name, pm_logger, pool_size=10):
 
         self.pm_logger = pm_logger
 
@@ -17,7 +17,6 @@ class PmMysqlBaseClass:
         self._database = database
 
         self.table_name = table_name
-        self.uid_tag = uid_tag
 
         res["host"] = self._host
         res["port"] = self._port
