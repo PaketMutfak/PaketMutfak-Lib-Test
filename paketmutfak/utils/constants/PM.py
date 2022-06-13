@@ -179,12 +179,32 @@ class UserTypes:
     COURIER = "COURIER"
 
 
+class UserTypesId:
+    BUILDING_MANAGER = 1
+    OPERATION_SPECIALIST = 2
+    OPERATION_DIRECTOR = 3
+    DIRECTOR_OF_SALES = 4
+    COURIER_CHIEF = 5
+    ACCOUNTING_DIRECTOR = 6
+    ACCOUNTING_EMPLOYEE = 7
+    CRAFT = 8
+    KITCHENS_DIRECTOR = 9
+    MARKETING_EMPLOYEE, = 0
+    CO_FOUNDER = 11
+    MEMBER = 12
+    KITCHEN_EMPLOYEE = 13
+    COURIER = 14
+
+
 class CustomerTypes:
     PM_EMPLOYEE = "PM-EMPLOYEE"
     PLATFORM_CUSTOMER = "PLATFORM-CUSTOMER"
     CUSTOMER = "CUSTOMER"
 
-class CourierTypes
+
+class KdsTypes:
+    KDS_1 = "KDS_1"
+    KDS_2 = "KDS_2"
 
 # todo: silinebilir
 
