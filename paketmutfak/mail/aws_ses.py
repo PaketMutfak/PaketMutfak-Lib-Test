@@ -3,7 +3,7 @@ import boto3
 from paketmutfak.utils.constants.error_codes import MessageCode
 
 
-class AwsSesSlack:
+class AwsSes:
     """
         This class generated to send e-mail to slack.
     """
