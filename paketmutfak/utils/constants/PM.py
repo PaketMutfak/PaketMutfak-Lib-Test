@@ -122,7 +122,7 @@ class BuildingRegionstatus:
     COMPLETED = "COMPLETED"
 
 
-class CourierWorkingStatus:
+class WorkingStatus:
     PASSIVE = 0
     ACTIVE = 1
     PENDING = 2
@@ -184,6 +184,7 @@ class CustomerTypes:
     PLATFORM_CUSTOMER = "PLATFORM-CUSTOMER"
     CUSTOMER = "CUSTOMER"
 
+class CourierTypes
 
 # todo: silinebilir
 
