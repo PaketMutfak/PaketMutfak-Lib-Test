@@ -105,6 +105,12 @@ class CourierOperationTxnCodes:
     ORDER_NOT_DELIVERED = "CUR_ORDER_NOT_DELIVERED"
 
 
+class PlatformIds:
+    YS = 1
+    GT = 2
+    TY = 3
+
+
 class PlatformNames:
     GT = "Getir"
     YS = "Yemeksepeti"
