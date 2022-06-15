@@ -212,6 +212,13 @@ class KdsTypes:
     KDS_1 = "KDS_1"
     KDS_2 = "KDS_2"
 
+
+PLATFORMS_DICT = {
+    PlatformNames.YS: "1",
+    PlatformNames.GT: "2",
+    PlatformNames.TY: "3"
+}
+
 # todo: silinebilir
 
 # class CancelledBillsContants:
