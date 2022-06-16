@@ -141,6 +141,21 @@ def generate_token():
 
     return decoded
 
+"""
+@application.errorhandler(400)
+def bad_request(error):
+    x = type(error.description)
+    if isinstance(error.description, ValidationError):
+        original_error = error.description
+        return make_response(jsonify({'message_code': original_error.message}), 400)
+    # handle other "Bad Request"-errors
+    return error
+
+
+@application.errorhandler(500)
+def internal_server_error(error):
+    return make_response(jsonify({'message_code': error.description}), 500)
+"""
 
 # def token_required(f):
 #     @wraps(f)
