@@ -23,6 +23,14 @@ class GetirOrderStatus:
     DELIVERED = "deliver"
 
 
+class PlatformsOrderStatus:
+    ACCEPTED = "Accepted"
+    ON_DELIVERY = "OnDelivery"
+    PREPARE = "Prepare"
+    DELIVERED = "Delivered"
+    CANCELLED = "Cancelled"
+
+
 class BrandsPlatformStatus:
     CLOSE = "Close"
     OPEN = "Open"
