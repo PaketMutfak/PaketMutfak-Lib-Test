@@ -45,12 +45,15 @@ class CourierStatus:
 
 class TableNames:
     AUTHORIZATION_TYPES = "Authorization_Types"
+    BASKETS = "Baskets"
+    BASKETS_ORDERS = "Baskets_Orders"
     BASKET_STATUS = "Basket_Status"
     BILLING_STATUS = "Billing_Status"
     BRAND_PLATFORM_REGIONS = "Brand_Platform_Regions"
     BUILDING_PM_REGIONS_STATUS = "Building_PM_Regions_Status"
     BUILDINGS_EMPLOYEES = "Buildings_Employees"
     BUILDINGS_KITCHEN = "Buildings_Kitchen"
+    CASH_ENTRY = "Cash_Entry"
     COMMAND_TYPES = "Command_Types"
     CONFIG_STORE = "Config_Store"
     COURIER_CONTRACT_TYPE = "Courier_Contract_Type"
@@ -60,6 +63,7 @@ class TableNames:
     DELIVERY_METHODS = "Delivery_Methods"
     END_OF_DAY_STATUS = "End_Of_Day_Status"
     ERROR_MESSAGES = "Error_Messages"
+    KDS_TYPE = "Kds_Type"
     MEMBERS = "Members"
     MEMBERS_BRANDS = "Members_Brands"
     METADATA = "Metadata"
@@ -82,6 +86,8 @@ class TableNames:
     PM_REGIONS = "PM_Regions"
     PM_REGIONS_OF_OTM_REGIONS = "PM_Regions_of_OTM_Regions"
     PM_USERS = "Pm_Users"
+    POS = "POS"
+    POS_PAYMENT_METHOD = "POS_Payment_Method"
     PRODUCTS = "Products"
     PRODUCTS_CATEGORY = "Products_Category"
     PRODUCTS_OPTIONS = "Products_Options"
@@ -89,6 +95,7 @@ class TableNames:
     RESTAURANTS_OF_OTM_REGIONS = "Restaurants_of_OTM_Regions"
     RESTAURANTS_PLATFORMS_INFORMATION = "Restaurants_Platforms_Information"
     TURKEY_ADDRESSES = "Turkey_Addresses"
+    Z_ENTRY = "Z_Entry"
 
 
 class CourierOperationTxnCodes:
