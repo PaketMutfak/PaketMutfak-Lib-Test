@@ -46,6 +46,7 @@ class CourierStatus:
 class TableNames:
     AUTHORIZATION_TYPES = "Authorization_Types"
     BASKETS = "Baskets"
+    BASKETS_ORDERS = "Baskets_Orders"
     BASKET_STATUS = "Basket_Status"
     BILLING_STATUS = "Billing_Status"
     BRAND_PLATFORM_REGIONS = "Brand_Platform_Regions"
