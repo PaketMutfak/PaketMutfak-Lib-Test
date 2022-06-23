@@ -69,6 +69,10 @@ def generate_adisyon_no():
     return randint(10000, 99999)
 
 
+def generate_basket_no():
+    return randint(10000, 99999)
+
+
 def edit_name_as_shorten(s):
 
     if type(s) != str:
