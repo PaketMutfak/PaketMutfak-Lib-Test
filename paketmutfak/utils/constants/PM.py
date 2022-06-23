@@ -96,6 +96,7 @@ class TableNames:
     RESTAURANTS_PLATFORMS_INFORMATION = "Restaurants_Platforms_Information"
     TURKEY_ADDRESSES = "Turkey_Addresses"
     Z_ENTRY = "Z_Entry"
+    ORDERS_SEARCH_RECORDS = "Orders_Search_Records"
 
 
 class CourierOperationTxnCodes:
