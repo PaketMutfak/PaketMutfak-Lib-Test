@@ -129,31 +129,21 @@ def get_pm_dynamodb_order_format():
         "edited_payments": [],
         "original_request": {},
         "payment_method": None,
-        "basket_id": "N",
         "platform_code": None,
-        "member_id": "N",
         "building_name": None,
-        "building_id": "N",
-        "pm_region_id": "N",
-        "member_name": None,
+        "pm_region_id": None,
         "pm_region_name": None,
-        "brand_id": "N",
-        "brand_name": None,
-        "kitchen_id": "N",
-        "address_id": "N",
-        "kitchen_no": "N",
-        "pm_restaurant_id": "N",
+        "address_id": None,
+        "pm_restaurant_id": None,
         "app_cancelation_note": None,
         "delivery_method": None,
         "delivery_status": "PENDING",
         "billing_status": "PENDING",
         "order_contents": None,
         "promotions": None,
-        "courier_id": "N",
+        "courier_id": None,
         "customer_type": None,
         "order_type": None,
-        "is_fake_order": "0",
-        "courier_name": None,
         "is_scheduled_order": "0",
         "platform_confirmation_code": None,
         "platform_delivery_price": None,
@@ -177,9 +167,9 @@ def get_pm_dynamodb_order_format():
         "is_dirty_payment": "0",
         "total_price": None,
         "discount_price": "0.00",
-        "adisyon_no": "N",
+        "adisyon_no": None,
         "order_note": None,
-        "platform_name": "N",
+        "platform_name": None,
         "payment_location": None,
         "customer_info": {
             "e-mail": None,
@@ -208,7 +198,6 @@ def get_pm_dynamodb_order_format():
         "courier_handover_time": None,
         "start_deliver_time": None,
         "print_count": "0",
-        "is_archived": "0",
         "updated_at": order_time,
         "created_at": order_time,
         "utc_date": str(datetime.now().astimezone().replace(microsecond=0).date()),
@@ -216,7 +205,6 @@ def get_pm_dynamodb_order_format():
     }
 
     return item
-
 
 def get_constant_cancel_options():
 
