@@ -127,11 +127,7 @@ def get_pm_dynamodb_order_format():
             "has_restaurant_transfer_price": "0"
         },
         "edited_payments": [],
-        "original_request": {
-            "yemeksepeti": None,
-            "getir": None,
-            "trendyol": None
-        },
+        "original_request": {},
         "payment_method": None,
         "basket_id": "N",
         "platform_code": None,
