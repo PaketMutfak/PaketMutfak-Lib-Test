@@ -44,6 +44,9 @@ class PmMysqlBaseClass:
 
         return pool
 
+    def close(self):
+        self.close()
+
     @staticmethod
     def close(conn, cursor):
         """
