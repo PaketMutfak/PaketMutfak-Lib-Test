@@ -26,7 +26,7 @@ def adress_coordinates_format_checker(address):
 
 def check_otm_deliver_times(otm_data):
 
-    if otm_data.get("max_deliver_time") - otm_data.get("min_deliver_time") != 10:
+    if otm_data.get("max_delivery_time") - otm_data.get("min_delivery_time") != 10:
         return False, MessageCode.MAX_AND_MIN_DELIVERY_TIME_ERROR_3
 
     return True, ""
