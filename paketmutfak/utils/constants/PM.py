@@ -172,8 +172,8 @@ class DeliveryMethod:
 
 class PaymentLocations:
     ONLINE = "ONLINE"
-    AT_THE_DOOR = "AT_THE_DOOR"
-    AT_THE_RESTAURANT = "AT_THE_RESTAURANT"
+    AT_THE_DOOR = "AT_DOOR"
+    AT_THE_RESTAURANT = "AT_RESTAURANT"
 
 
 class UserTypes:

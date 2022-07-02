@@ -185,9 +185,9 @@ def find_distance_between_points(point_1, point_2):
     try:
         distance = math.sqrt((float(point_1[0]) - float(point_2[0]))**2 + (float(point_1[1]) - float(point_2[1]))**2)
     except Exception:
-        return ""
+        return None
     else:
-        return str(distance)
+        return distance
 
 
 def process_order_list_from_archive_for_general(order_list, result_object, member):
