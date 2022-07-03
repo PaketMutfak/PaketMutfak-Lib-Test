@@ -219,6 +219,7 @@ class CustomerTypes:
 class KdsTypes:
     KDS_1 = "KDS_1"
     KDS_2 = "KDS_2"
+    KDS_3 = "KDS_3"
 
 
 PLATFORMS_DICT = {
