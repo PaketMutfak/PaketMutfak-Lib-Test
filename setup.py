@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='paketmutfak',
-    version='1.0.27',
+    version='1.0.28',
     author='Paket Mutfak',
     author_email='dev@paketmutfak.com.tr',
     description='Testing installation of Package',
