@@ -77,3 +77,17 @@ class AwsSes:
 
         except Exception as exp:
             return {"message_code": MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE, "exp": exp}
+
+    def verify_email_identity(self, email):
+        try:
+            response = self.client.verify_email_identity(
+                EmailAddress=email
+            )
+
+            if response.get('ResponseMetadata', {}).get('HTTPStatusCode') == 200:
+                return {"message_code": MessageCode.COMPLETED_MESSAGE}, 200
+            else:
+                return {"message_code": MessageCode.AWS_MAIL_ERROR}
+
+        except Exception as exp:
+            return {"message_code": MessageCode.AWS_MAIL_ERROR, "exp": exp}
