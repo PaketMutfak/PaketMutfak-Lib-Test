@@ -73,10 +73,10 @@ class AwsSes:
             if response.get('ResponseMetadata', {}).get('HTTPStatusCode') == 200:
                 return {"message_code": MessageCode.COMPLETED_MESSAGE}, 200
             else:
-                return {"message_code": MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE}
+                return {"message_code": MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE}, 500
 
         except Exception as exp:
-            return {"message_code": MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE, "exp": exp}
+            return {"message_code": MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE, "exp": exp}, 500
 
     def verify_email_identity(self, email):
         try:
@@ -87,7 +87,7 @@ class AwsSes:
             if response.get('ResponseMetadata', {}).get('HTTPStatusCode') == 200:
                 return {"message_code": MessageCode.COMPLETED_MESSAGE}, 200
             else:
-                return {"message_code": MessageCode.AWS_MAIL_ERROR}
+                return {"message_code": MessageCode.AWS_MAIL_ERROR}, 500
 
         except Exception as exp:
-            return {"message_code": MessageCode.AWS_MAIL_ERROR, "exp": exp}
+            return {"message_code": MessageCode.AWS_MAIL_ERROR, "exp": exp}, 500
