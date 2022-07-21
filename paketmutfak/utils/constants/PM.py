@@ -97,6 +97,7 @@ class TableNames:
     TURKEY_ADDRESSES = "Turkey_Addresses"
     Z_ENTRY = "Z_Entry"
     ORDERS_SEARCH_RECORDS = "Orders_Search_Records"
+    MAJOR_ERRORS = "Major_Errors"
 
 
 class CourierOperationTxnCodes:
