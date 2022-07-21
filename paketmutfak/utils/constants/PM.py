@@ -98,6 +98,7 @@ class TableNames:
     Z_ENTRY = "Z_Entry"
     ORDERS_SEARCH_RECORDS = "Orders_Search_Records"
     MAJOR_ERRORS = "Major_Errors"
+    MAJOR_ERRORS_TYPE = "Major_Errors_Type"
 
 
 class CourierOperationTxnCodes:
