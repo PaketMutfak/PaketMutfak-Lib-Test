@@ -11,7 +11,6 @@ from paketmutfak.utils.constants.PM import BillingStatus, OrderStatus
 from paketmutfak.utils.constants.parameters import PAREKENDE_SATIS_FISI_LIMIT, TOLERANCE_PAYMENT, DYNAMO_DB_NULL_INDEX, \
     PAYMENT_PER_BASKET
 from paketmutfak.utils.constants.platforms import BrandsPlatformStatus
-from paketmutfak.utils.constants.authorizations import permissions
 from math import sin, radians, cos, asin, sqrt
 
 
@@ -160,25 +159,6 @@ def bad_request(error):
 def internal_server_error(error):
     return make_response(jsonify({'message_code': error.description}), 500)
 """
-
-# def token_required(f):
-#     @wraps(f)
-#     def decorated(*args, **kwargs):
-#         token = request.args.get("token")
-#
-#         if not token:
-#             return make_response({"message_code": MessageCode.MISSING_TOKEN_ERROR_MESSAGE}, 403)
-#
-#         try:
-#             public_key = app_config['PUBLIC_KEY']
-#             decoded = jwt.decode(token, public_key, algorithms=["RS256"])
-#             # send token to authentication function
-#         except:
-#             return make_response({"message_code": MessageCode.INVALID_TOKEN_ERROR}, 403)
-#
-#         return f(*args, **kwargs)
-#
-#     return decorated
 
 
 def find_distance_between_points(point_1, point_2):
@@ -573,31 +553,6 @@ def check_otm_deliver_times(otm_data):
     return True, ""
 
 
-def check_sign_up_data(data):
-
-    # data.get('phone_number') check for valid phone number
-    # building_id check for building_id
-    # role_id check for role_id
-    # photo size limit
-    # name and surname ?
-    building_ids = data.get("building_ids")
-    role_id = data.get("role_id")
-
-    per_as_role_id = "-"
-    for role in permissions["roles"]:
-        if role["id"] == int(role_id):
-            per_as_role_id = role["permissions"]["TUM_BINA_YETKISI"]["BINALAR"]
-
-    if per_as_role_id == "RW":
-        # Tüm binalara yetkisi vardır
-        return {"message_code": MessageCode.COMPLETED_MESSAGE, "is_permit_buildings": True}, 200
-    elif building_ids is None and per_as_role_id != "RW":
-        # Tüm binalara yetkisi yoktur. Veri yanlış gelmiş
-        return {"message_code": MessageCode.WRONG_DATA_ERROR_MESSAGE}, 400
-
-    return {"message_code": MessageCode.COMPLETED_MESSAGE}, 200
-
-
 def is_valid_email(email):
     try:
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|db-z]{2,}\b'
@@ -621,32 +576,6 @@ def check_phone_number_format(phone_number):
         return False
 
     return True
-
-
-def get_permissions_by_role_id(role_id):
-    permissions_by_role_id = -1
-    try:
-        for role in permissions["roles"]:
-            if role['id'] == int(role_id):
-                return role["permissions"]
-
-    except Exception:
-        return permissions_by_role_id
-    else:
-        return permissions_by_role_id
-
-
-def get_permissions_by_role_type(role_type):
-    permissions_by_role_type = -1
-    try:
-        for role in permissions["roles"]:
-            if role["type"] == role_type:
-                return role["permissions"]
-
-    except Exception:
-        return permissions_by_role_type
-    else:
-        return permissions_by_role_type
 
 
 def generate_user_name(usernames, name, surname):

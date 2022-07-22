@@ -19,6 +19,7 @@ class OrderStatus:
     COMPLETED = "COMPLETED"
     CANCELLED = "CANCELLED"
 
+
 class BasketStatus:
     PENDING = "PENDING"
     ASSIGNED_TO_COURIER = "ASSIGNED_TO_COURIER"
@@ -99,6 +100,17 @@ class TableNames:
     ORDERS_SEARCH_RECORDS = "Orders_Search_Records"
     MAJOR_ERRORS = "Major_Errors"
     MAJOR_ERRORS_TYPE = "Major_Errors_Type"
+    REQUESTS = "Requests"
+    ACCESS_MODE = "Access_Mode"
+    USER_PANEL_ACCESS = "User_Panel_Access"
+    APPLICATIONS_PANELS = "Applications_Panels"
+    PANEL_REQUESTS = "Panel_Requests"
+
+
+class AccessModes:
+    EDIT = "Düzenle"
+    VIEW = "Görüntüle"
+    UNAUTHORIZED = "Yetkisiz"
 
 
 class CourierOperationTxnCodes:
