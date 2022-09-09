@@ -206,20 +206,21 @@ def get_pm_dynamodb_order_format():
 
     return item
 
+
 def get_constant_cancel_options():
 
     cancel_options_json = {"cancel_options": [
         {
-            "id": "1",
-            "name": "Müşteri istemedi."
+            "id": "2",
+            "name": "Elektrikler kesildi."
         },
         {
             "id": "2",
             "name": "Malzemeler eksik."
         },
         {
-            "id": "2",
-            "name": "Elektrikler kesildi."
+            "id": "1",
+            "name": "Müşteri istemedi."
         }
     ]}
 
