@@ -211,7 +211,7 @@ def get_constant_cancel_options():
 
     cancel_options_json = {"cancel_options": [
         {
-            "id": "2",
+            "id": "3",
             "name": "Elektrikler kesildi."
         },
         {
