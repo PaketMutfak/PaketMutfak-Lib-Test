@@ -242,6 +242,26 @@ PLATFORMS_DICT = {
     PlatformNames.TY: "3"
 }
 
+
+class CourierHourlyFee:
+    MIN = 30
+    MAX = 60
+
+
+class CourierPrim:
+    MIN = 5
+    MAX = 15
+
+
+class CourierAdvance:
+    MIN = 0
+    MAX = 3000
+
+
+class CourierWorkingHours:
+    MIN = 0
+    MAX = 14
+
 # todo: silinebilir
 
 # class CancelledBillsContants:
