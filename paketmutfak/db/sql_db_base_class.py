@@ -58,13 +58,14 @@ class PmMysqlBaseClass:
         cursor.close()
         conn.close()
 
-    def execute(self, sql, args=None, commit=False):
+    def execute(self, sql, args=None, commit=False, column_names=False):
         """
         Execute db sql, it could be with args and with out args. The usage is
         similar with execute() function in module pymysql.
         :param sql: sql clause
         :param args: args need by sql clause
         :param commit: whether to commit
+        :param column_names: is it return column name as output
         :return: if commit, return None, else, return result
         """
         # get connection form connection pool instead of create one.
@@ -84,17 +85,20 @@ class PmMysqlBaseClass:
                 return row_count
             else:
                 res = cursor.fetchall()
-                self.close(conn, cursor)
-                return res
+                if column_names:
+                    num_fields = len(cursor.description)
+                    field_names = []
+                    if num_fields > 0:
+                        field_names = [i[0] for i in cursor.description]
+                    self.close(conn, cursor)
+                    return res, field_names
+                else:
+                    self.close(conn, cursor)
+                    return res
         except mysql.connector.PoolError as poolErr:
             if conn:
                 self.close(conn, cursor)
-            log_id = generate_uid()
-            self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-                                 extra=init_extra_log_params(log_id=log_id,
-                                                             table_name=self.table_name,
-                                                             db_name=self._database))
-            return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
+            return {"log_id": "log_id", "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
                 self.close(conn, cursor)
