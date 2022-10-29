@@ -7,7 +7,7 @@ def adress_coordinates_format_checker(address):
 
         if address.get("full_address") is None or address.get("full_address") == "":
 
-            if address.get("neighbourhood_name") is None or address.get("neighbourhood_name"):
+            if address.get("neighbourhood_name") is None or address.get("neighbourhood_name") == "":
                 return False, MessageCode.MISSING_DATA_ERROR_MESSAGE
 
             if not isinstance(address.get("neighbourhood_name"), str):
