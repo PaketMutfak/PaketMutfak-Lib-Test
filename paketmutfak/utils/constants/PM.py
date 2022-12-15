@@ -55,6 +55,7 @@ class TableNames:
     BUILDINGS_EMPLOYEES = "Buildings_Employees"
     BUILDINGS_KITCHEN = "Buildings_Kitchen"
     CASH_ENTRY = "Cash_Entry"
+    Case_Archive = "Case_Archive"
     COMMAND_TYPES = "Command_Types"
     CONFIG_STORE = "Config_Store"
     COURIER_CONTRACT_TYPE = "Courier_Contract_Type"
