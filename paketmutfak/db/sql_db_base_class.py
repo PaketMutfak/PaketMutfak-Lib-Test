@@ -1,3 +1,4 @@
+import time
 import mysql.connector
 from mysql.connector import errorcode, pooling
 from paketmutfak.utils.functions.general import init_extra_log_params, generate_uid
@@ -5,47 +6,49 @@ from paketmutfak.utils.constants.error_codes import MessageCode
 
 
 class PmMysqlBaseClass:
-    def __init__(self, host, port, user, password, database, pool_name, table_name, pm_logger, pool_size=10):
+    _instance = None
+    host = None
+    port = None
+    user = None
+    password = None
+    database = None
+    pool_name = None
+    table_name = None
+    pm_logger = None
+    pool_size = 10
 
-        self.pm_logger = pm_logger
+    def __init__(self):
+        raise RuntimeError('Call instance() instead')
 
-        res = {}
-        self._host = host
-        self._port = port
-        self._user = user
-        self._password = password
-        self._database = database
+    @classmethod
+    def instance(cls, host, port, user, password, database, pool_name, pm_logger, pool_size=10):
+        if cls._instance is None:
+            print('Creating new instance')
+            cls._instance = cls.__new__(cls)
+            cls.pm_logger = pm_logger
 
-        self.table_name = table_name
+            res = {}
+            cls.host = host
+            cls.port = port
+            cls.user = user
+            cls.password = password
+            cls.database = database
+            cls.pool_name = pool_name
+            cls.pool_size = pool_name
 
-        res["host"] = self._host
-        res["port"] = self._port
-        res["user"] = self._user
-        res["password"] = self._password
-        res["database"] = self._database
-        self.dbconfig = res
-        self.pool = self.create_pool(pool_name=pool_name, pool_size=pool_size)
+            res["host"] = cls.host
+            res["port"] = cls.port
+            res["user"] = cls.user
+            res["password"] = cls.password
+            res["database"] = cls.database
 
-    def create_pool(self, pool_name="mypool", pool_size=3):
-        """
-        Create db connection pool, after created, the request of connecting
-        MySQL could get db connection from this pool instead of request to
-        create db connection.
-        :param pool_name: the name of pool, default is "mypool"
-        :param pool_size: the size of pool, default is 3
-        :return: connection pool
-        """
-        # TODO : Burada poolda hata varsa ne yapılmalı ?
-        pool = pooling.MySQLConnectionPool(
-            pool_name=pool_name,
-            pool_size=pool_size,
-            pool_reset_session=True,
-            **self.dbconfig)
-
-        return pool
-
-    def close(self):
-        self.close()
+            pool = pooling.MySQLConnectionPool(
+                pool_name=pool_name,
+                pool_size=pool_size,
+                pool_reset_session=True,
+                **res)
+            cls.pool = pool
+        return cls._instance
 
     @staticmethod
     def close(conn, cursor):
@@ -57,6 +60,22 @@ class PmMysqlBaseClass:
         """
         cursor.close()
         conn.close()
+
+    def _get_connection(self):
+        conn = None
+        cursor = None
+        try:
+            conn, cursor = self.get_connection_conn_cursor()
+
+        except mysql.connector.PoolError:
+            if conn:
+                self.close(conn, cursor)
+            return {"log_id": "log_id", "status": "BAD", "status_code": "BAD"}
+        except Exception as exp:
+            if conn:
+                self.close(conn, cursor)
+            respond = self.database_error_handling_to_log(error=exp, sql_statement="")
+            return respond
 
     def execute(self, sql, args=None, commit=False, column_names=False):
         """
@@ -72,8 +91,8 @@ class PmMysqlBaseClass:
         conn = None
         cursor = None
         try:
-            conn = self.pool.get_connection()
-            cursor = conn.cursor()
+            conn, cursor = self.get_connection_conn_cursor()
+
             if args:
                 cursor.execute(sql, args)
             else:
@@ -95,7 +114,7 @@ class PmMysqlBaseClass:
                 else:
                     self.close(conn, cursor)
                     return res
-        except mysql.connector.PoolError as poolErr:
+        except mysql.connector.PoolError:
             if conn:
                 self.close(conn, cursor)
             return {"log_id": "log_id", "status": "BAD", "status_code": "BAD"}
@@ -123,8 +142,7 @@ class PmMysqlBaseClass:
         conn = None
         cursor = None
         try:
-            conn = self.pool.get_connection()
-            cursor = conn.cursor()
+            conn, cursor = self.get_connection_conn_cursor()
             cursor.executemany(sql, args)
             if commit is True:
                 conn.commit()
@@ -141,8 +159,8 @@ class PmMysqlBaseClass:
             log_id = generate_uid()
             self.pm_logger.error(msg=f"get_connection error: {poolErr}",
                                  extra=init_extra_log_params(log_id=log_id,
-                                                             table_name=self.table_name,
-                                                             db_name=self._database))
+                                                             table_name="",
+                                                             db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -155,7 +173,27 @@ class PmMysqlBaseClass:
             respond = self.database_error_handling_to_log(error=exp, sql_statement=sql)
             return respond
 
-    def get_connection_conn_cursor(self):
+    def get_connection_conn_cursor(self, timeout=10, retry_period=0.1):
+        try:
+            conn, cursor = self._get_connection_conn_cursor_helper()
+
+            if timeout < retry_period:
+                return {"message_code": "Timeout must be greater than retry period"}, 400
+
+            max_retry_count = int(timeout / retry_period)
+            attempt_count = 0
+            while cursor is None and attempt_count < max_retry_count:
+                conn, cursor = self._get_connection_conn_cursor_helper()
+                attempt_count += 1
+                time.sleep(retry_period)
+
+        except Exception as exp:
+            respond = self.database_error_handling_to_log(error=exp, sql_statement="Connection Pool Error")
+            return respond, None
+        else:
+            return conn, cursor
+
+    def _get_connection_conn_cursor_helper(self):
         try:
             conn = self.pool.get_connection()
             cursor = conn.cursor()
@@ -178,8 +216,8 @@ class PmMysqlBaseClass:
             log_id = generate_uid()
             self.pm_logger.error(msg=f"get_connection error: {poolErr}",
                                  extra=init_extra_log_params(log_id=log_id,
-                                                             table_name=self.table_name,
-                                                             db_name=self._database))
+                                                             table_name="",
+                                                             db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -208,8 +246,8 @@ class PmMysqlBaseClass:
             log_id = generate_uid()
             self.pm_logger.error(msg=f"get_connection error: {poolErr}",
                                  extra=init_extra_log_params(log_id=log_id,
-                                                             table_name=self.table_name,
-                                                             db_name=self._database))
+                                                             table_name="",
+                                                             db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -237,8 +275,8 @@ class PmMysqlBaseClass:
             log_id = generate_uid()
             self.pm_logger.error(msg=f"get_connection error: {poolErr}",
                                  extra=init_extra_log_params(log_id=log_id,
-                                                             table_name=self.table_name,
-                                                             db_name=self._database))
+                                                             table_name="",
+                                                             db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -279,8 +317,8 @@ class PmMysqlBaseClass:
             log_id = generate_uid()
             self.pm_logger.error(msg=f"get_connection error: {poolErr}",
                                  extra=init_extra_log_params(log_id=log_id,
-                                                             table_name=self.table_name,
-                                                             db_name=self._database))
+                                                             table_name="",
+                                                             db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -304,50 +342,50 @@ class PmMysqlBaseClass:
             pm_db_errno = error.errno
             if error.errno == errorcode.ER_BAD_TABLE_ERROR:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             elif error.errno == errorcode.ER_TABLE_EXISTS_ERROR:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             elif error.errno == errorcode.ER_PARSE_ERROR:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             elif error.errno == errorcode.ER_BAD_FIELD_ERROR:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             elif error.errno == errorcode.ER_WRONG_FIELD_WITH_GROUP:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             elif error.errno == errorcode.ER_DUP_FIELDNAME:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             elif error.errno == errorcode.ER_DUP_KEYNAME:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             elif error.errno == errorcode.ER_NO_SUCH_TABLE:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
             else:
                 log_message = {'status': 'BAD',
-                               'error_message': f"Error '{self.table_name}': {error}",
+                               'error_message': f"Error : {error}",
                                'sql_statement': sql_statement,
                                'errno': error.errno}
         else:
-            log_message = {'status': 'BAD', 'error_message': f"Something went wrong on '{self.table_name}': "}
+            log_message = {'status': 'BAD', 'error_message': f"Something went wrong on : "}
 
         log_id = generate_uid()
         self.pm_logger.error(msg=log_message.get("error_message"),
                              extra=init_extra_log_params(log_id=log_id,
-                                                         table_name=self.table_name,
+                                                         table_name="",
                                                          sql_statement=sql_statement,
-                                                         db_name=self._database,
+                                                         db_name=self.database,
                                                          sql_error_code=pm_db_errno,
                                                          error_code=MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE))
 
