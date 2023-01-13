@@ -256,7 +256,7 @@ class CourierPrim:
 
 class CourierAdvance:
     MIN = 0
-    MAX = 3000
+    MAX = 9000
 
 
 class CourierWorkingHours:
