@@ -132,12 +132,14 @@ class PlatformIds:
     YS = 1
     GT = 2
     TY = 3
+    MG = 4
 
 
 class PlatformNames:
     GT = "Getir"
     YS = "Yemeksepeti"
     TY = "Trendyol"
+    MG = "Migros"
     PHONE = "Telefon ile Sipariş"
     HAND_DELIVERY = "Gel Al Siparişi"
     PM_EMPLOYEE = "Paket Mutfak Çalışan Siparişi"
@@ -240,7 +242,8 @@ class KdsTypes:
 PLATFORMS_DICT = {
     PlatformNames.YS: "1",
     PlatformNames.GT: "2",
-    PlatformNames.TY: "3"
+    PlatformNames.TY: "3",
+    PlatformNames.MG: "4"
 }
 
 
