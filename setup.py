@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='paketmutfak',
-    version='1.0.49',
+    version='0.2.1',
     author='Paket Mutfak',
     author_email='dev@paketmutfak.com.tr',
     description='Testing installation of Package',
@@ -25,7 +25,8 @@ setup(
                       'iso8601',
                       'slugify',
                       'PyJWT',
-                      'beartype'],
+                      'beartype',
+                      'flask'],
 )
 
 

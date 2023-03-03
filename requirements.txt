@@ -5,3 +5,7 @@ slugify~=0.0.1
 PyJWT~=2.4.0
 setuptools~=57.0.0
 beartype~=0.10.4
+paketmutfak~=1.0.4
+DateTime~=4.4
+uuid~=1.30
+Flask~=2.2.3

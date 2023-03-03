@@ -1,0 +1,10 @@
+requests
+boto3
+mysql-connector
+uuid
+datetime
+iso8601
+slugify
+PyJWT
+beartype
+flask
