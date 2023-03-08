@@ -1,6 +1,7 @@
 import time
 import mysql.connector
 from mysql.connector import errorcode, pooling
+from paketmutfak.db.LogDbBase import LogRDS
 from paketmutfak.utils.functions.general import init_extra_log_params, generate_uid
 from paketmutfak.utils.constants.error_codes import MessageCode
 
@@ -25,7 +26,7 @@ class PmMysqlBaseClass:
         if cls._instance is None:
             print('Creating new instance')
             cls._instance = cls.__new__(cls)
-            cls.pm_logger = pm_logger
+            cls.pm_logger: LogRDS = pm_logger
 
             res = {}
             cls.host = host
@@ -157,10 +158,10 @@ class PmMysqlBaseClass:
             if conn:
                 self.close(conn, cursor)
             log_id = generate_uid()
-            self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-                                 extra=init_extra_log_params(log_id=log_id,
-                                                             table_name="",
-                                                             db_name=self.database))
+            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
+            #                      extra=init_extra_log_params(log_id=log_id,
+            #                                                  table_name="",
+            #                                                  db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -214,10 +215,10 @@ class PmMysqlBaseClass:
             if conn:
                 self.close(conn, cursor)
             log_id = generate_uid()
-            self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-                                 extra=init_extra_log_params(log_id=log_id,
-                                                             table_name="",
-                                                             db_name=self.database))
+            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
+            #                      extra=init_extra_log_params(log_id=log_id,
+            #                                                  table_name="",
+            #                                                  db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -244,10 +245,10 @@ class PmMysqlBaseClass:
             if conn:
                 self.close(conn, cursor)
             log_id = generate_uid()
-            self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-                                 extra=init_extra_log_params(log_id=log_id,
-                                                             table_name="",
-                                                             db_name=self.database))
+            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
+            #                      extra=init_extra_log_params(log_id=log_id,
+            #                                                  table_name="",
+            #                                                  db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -273,10 +274,10 @@ class PmMysqlBaseClass:
             if conn:
                 self.close(conn, cursor)
             log_id = generate_uid()
-            self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-                                 extra=init_extra_log_params(log_id=log_id,
-                                                             table_name="",
-                                                             db_name=self.database))
+            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
+            #                      extra=init_extra_log_params(log_id=log_id,
+            #                                                  table_name="",
+            #                                                  db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -315,10 +316,10 @@ class PmMysqlBaseClass:
             if conn:
                 self.close(conn, cursor)
             log_id = generate_uid()
-            self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-                                 extra=init_extra_log_params(log_id=log_id,
-                                                             table_name="",
-                                                             db_name=self.database))
+            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
+            #                      extra=init_extra_log_params(log_id=log_id,
+            #                                                  table_name="",
+            #                                                  db_name=self.database))
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -381,13 +382,13 @@ class PmMysqlBaseClass:
             log_message = {'status': 'BAD', 'error_message': f"Something went wrong on : "}
 
         log_id = generate_uid()
-        self.pm_logger.error(msg=log_message.get("error_message"),
-                             extra=init_extra_log_params(log_id=log_id,
-                                                         table_name="",
-                                                         sql_statement=sql_statement,
-                                                         db_name=self.database,
-                                                         sql_error_code=pm_db_errno,
-                                                         error_code=MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE))
+        # self.pm_logger.error(msg=log_message.get("error_message"),
+        #                      extra=init_extra_log_params(log_id=log_id,
+        #                                                  table_name="",
+        #                                                  sql_statement=sql_statement,
+        #                                                  db_name=self.database,
+        #                                                  sql_error_code=pm_db_errno,
+        #                                                  error_code=MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE))
 
         return {"log_id": log_id,
                 "status_code": "BAD",

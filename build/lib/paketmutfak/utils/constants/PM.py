@@ -133,6 +133,7 @@ class PlatformIds:
     GT = 2
     TY = 3
     MG = 4
+    FD = 5
 
 
 class PlatformNames:
@@ -140,6 +141,7 @@ class PlatformNames:
     YS = "Yemeksepeti"
     TY = "Trendyol"
     MG = "Migros"
+    FD = "Fuudy"
     PHONE = "Telefon ile Sipariş"
     HAND_DELIVERY = "Gel Al Siparişi"
     PM_EMPLOYEE = "Paket Mutfak Çalışan Siparişi"
@@ -243,7 +245,8 @@ PLATFORMS_DICT = {
     PlatformNames.YS: "1",
     PlatformNames.GT: "2",
     PlatformNames.TY: "3",
-    PlatformNames.MG: "4"
+    PlatformNames.MG: "4",
+    PlatformNames.FD: "5"
 }
 
 

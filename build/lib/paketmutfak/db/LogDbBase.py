@@ -72,7 +72,7 @@ class LogRDS(PmMysqlBaseClass):
 
             if _request:
                 full_path = _request.full_path
-                headers = edit_request_headers(request.headers.get('environ'))
+                headers = edit_request_headers(request.headers.environ)
                 request_method = _request.method
                 user_agent = json.dumps({
                     "browser": _request.user_agent_class.browser,
