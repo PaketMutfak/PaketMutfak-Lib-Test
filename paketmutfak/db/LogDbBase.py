@@ -50,7 +50,8 @@ class LogRDS(PmMysqlBaseClass):
     def __init__(self, service_name):
         self.service_name = service_name
 
-    def insert_log(self, _message: str, _func_name: str, _line_no: None, _request: request = None, _query: str = None,
+    def insert_log(self, _message: str, _func_name: str, _line_no: str = None,
+                   _request: request = None, _query: str = None,
                    _level: LogLevels = LogLevels.ERROR):
 
         # Request
@@ -65,6 +66,7 @@ class LogRDS(PmMysqlBaseClass):
 
         try:
             message = _message
+            short_message = _message[:200]
             level = _level
             line_no = _line_no
             func_name = _func_name
@@ -79,7 +81,7 @@ class LogRDS(PmMysqlBaseClass):
                     "language": _request.user_agent_class.language,
                     "platform": _request.user_agent_class.platform,
                     "version": _request.user_agent_class.version
-                })
+                }) if _request.user_agent_class else None
                 base_url = _request.base_url
                 endpoint = _request.path
 
@@ -94,10 +96,10 @@ class LogRDS(PmMysqlBaseClass):
 
                 return respond_error_data, 500
 
-            insert_service_logs_query = f"INSERT INTO Service_Logs (id, service_name, message, " \
+            insert_service_logs_query = f"INSERT INTO Service_Logs (id, service_name, message, short_message, " \
                                         f"func_name, line_no, headers, level, full_path, request_method, " \
                                         f"user_agent, base_url, endpoint, query, `utc_date`) " \
-                                        f"VALUES (%(log_id)s, %(service_name)s , %(message)s, %(func_name)s, " \
+                                        f"VALUES (%(log_id)s, %(service_name)s , %(message)s, %(short_message)s, %(func_name)s, " \
                                         f"%(line_no)s, %(headers)s, %(level)s, %(full_path)s, %(request_method)s, " \
                                         f"%(user_agent)s, %(base_url)s, %(endpoint)s, %(query)s, %(utc_date)s);"
 
@@ -108,6 +110,7 @@ class LogRDS(PmMysqlBaseClass):
                 'log_id': log_id,
                 'service_name': self.service_name,
                 'message': message,
+                'short_message': short_message,
                 'func_name': func_name,
                 'line_no': line_no,
                 'headers': headers,
