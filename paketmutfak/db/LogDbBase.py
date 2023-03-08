@@ -76,14 +76,16 @@ class LogRDS(PmMysqlBaseClass):
                 full_path = _request.full_path
                 headers = edit_request_headers(request.headers.environ)
                 request_method = _request.method
-                user_agent = json.dumps({
-                    "browser": _request.user_agent_class.browser,
-                    "language": _request.user_agent_class.language,
-                    "platform": _request.user_agent_class.platform,
-                    "version": _request.user_agent_class.version
-                }) if _request.user_agent_class else None
+                user_agent = None
                 base_url = _request.base_url
                 endpoint = _request.path
+
+                # json.dumps({
+                #     "browser": _request.user_agent.browser,
+                #     "language": _request.user_agent.language,
+                #     "platform": _request.user_agent.platform,
+                #     "version": _request.user_agent.version
+                # }) if _request.user_agent else None
 
             if _query:
                 query = _query
