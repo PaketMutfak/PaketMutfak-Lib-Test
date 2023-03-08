@@ -50,7 +50,7 @@ class LogRDS(PmMysqlBaseClass):
     def __init__(self, service_name):
         self.service_name = service_name
 
-    def insert_log(self, _message: str, _line_no: str, _request: request = None, _query: str = None,
+    def insert_log(self, _message: str, _func_name: str, _line_no: None, _request: request = None, _query: str = None,
                    _level: LogLevels = LogLevels.ERROR):
 
         # Request
@@ -67,7 +67,7 @@ class LogRDS(PmMysqlBaseClass):
             message = _message
             level = _level
             line_no = _line_no
-            func_name = inspect.stack()[1].function
+            func_name = _func_name
             # INFO: inspect içerisinde fonksiyonların sıralı olarak çağrıldığı tüm fonksiyonlar var
 
             if _request:
