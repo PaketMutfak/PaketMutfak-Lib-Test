@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import errorcode, pooling
 from paketmutfak.utils.functions.general import init_extra_log_params, generate_uid
 from paketmutfak.utils.constants.error_codes import MessageCode
-
+import LogDbBase
 
 class PmMysqlBaseClass:
     _instance = None
@@ -25,7 +25,7 @@ class PmMysqlBaseClass:
         if cls._instance is None:
             print('Creating new instance')
             cls._instance = cls.__new__(cls)
-            cls.pm_logger = pm_logger
+            cls.pm_logger: LogDbBase.LogRDS = pm_logger
 
             res = {}
             cls.host = host
@@ -114,9 +114,15 @@ class PmMysqlBaseClass:
                 else:
                     self.close(conn, cursor)
                     return res
-        except mysql.connector.PoolError:
+        except mysql.connector.PoolError as poolErr:
             if conn:
                 self.close(conn, cursor)
+            log_id, _ = self.pm_logger.insert_log(
+                _message=f"get_connection error: {poolErr}",
+                _func_name='execute',
+                _query=sql,
+                _level=LogDbBase.LogLevels.CRITICAL_ERROR
+            )
             return {"log_id": "log_id", "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -156,11 +162,12 @@ class PmMysqlBaseClass:
         except mysql.connector.PoolError as poolErr:
             if conn:
                 self.close(conn, cursor)
-            log_id = generate_uid()
-            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-            #                      extra=init_extra_log_params(log_id=log_id,
-            #                                                  table_name="",
-            #                                                  db_name=self.database))
+            log_id, _ = self.pm_logger.insert_log(
+                _message=f"get_connection error: {poolErr}",
+                _func_name='executemany',
+                _query=sql,
+                _level=LogDbBase.LogLevels.CRITICAL_ERROR
+            )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -213,11 +220,12 @@ class PmMysqlBaseClass:
         except mysql.connector.PoolError as poolErr:
             if conn:
                 self.close(conn, cursor)
-            log_id = generate_uid()
-            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-            #                      extra=init_extra_log_params(log_id=log_id,
-            #                                                  table_name="",
-            #                                                  db_name=self.database))
+            log_id, _ = self.pm_logger.insert_log(
+                _message=f"get_connection error: {poolErr}",
+                _func_name='executemany_without_commit',
+                _query=sql,
+                _level=LogDbBase.LogLevels.CRITICAL_ERROR
+            )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -243,11 +251,12 @@ class PmMysqlBaseClass:
         except mysql.connector.PoolError as poolErr:
             if conn:
                 self.close(conn, cursor)
-            log_id = generate_uid()
-            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-            #                      extra=init_extra_log_params(log_id=log_id,
-            #                                                  table_name="",
-            #                                                  db_name=self.database))
+            log_id, _ = self.pm_logger.insert_log(
+                _message=f"execute_without_commit: {poolErr}",
+                _func_name='executemany_without_commit',
+                _query=sql,
+                _level=LogDbBase.LogLevels.CRITICAL_ERROR
+            )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -272,11 +281,11 @@ class PmMysqlBaseClass:
         except mysql.connector.PoolError as poolErr:
             if conn:
                 self.close(conn, cursor)
-            log_id = generate_uid()
-            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-            #                      extra=init_extra_log_params(log_id=log_id,
-            #                                                  table_name="",
-            #                                                  db_name=self.database))
+            log_id, _ = self.pm_logger.insert_log(
+                _message=f"commit_without_execute: {poolErr}",
+                _func_name='executemany_without_commit',
+                _level=LogDbBase.LogLevels.CRITICAL_ERROR
+            )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -314,11 +323,11 @@ class PmMysqlBaseClass:
         except mysql.connector.PoolError as poolErr:
             if conn:
                 self.close(conn, cursor)
-            log_id = generate_uid()
-            # self.pm_logger.error(msg=f"get_connection error: {poolErr}",
-            #                      extra=init_extra_log_params(log_id=log_id,
-            #                                                  table_name="",
-            #                                                  db_name=self.database))
+            log_id, _ = self.pm_logger.insert_log(
+                _message=f"commit_without_execute: {poolErr}",
+                _func_name='callprocedure',
+                _level=LogDbBase.LogLevels.CRITICAL_ERROR
+            )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
             if conn:
@@ -380,14 +389,12 @@ class PmMysqlBaseClass:
         else:
             log_message = {'status': 'BAD', 'error_message': f"Something went wrong on : "}
 
-        log_id = generate_uid()
-        # self.pm_logger.error(msg=log_message.get("error_message"),
-        #                      extra=init_extra_log_params(log_id=log_id,
-        #                                                  table_name="",
-        #                                                  sql_statement=sql_statement,
-        #                                                  db_name=self.database,
-        #                                                  sql_error_code=pm_db_errno,
-        #                                                  error_code=MessageCode.UNEXPECTED_ERROR_ON_SERVICE_MESSAGE))
+        log_id, _ = self.pm_logger.insert_log(
+            _message=log_message.get("error_message"),
+            _func_name='database_error_handling_to_log',
+            _level=LogDbBase.LogLevels.CRITICAL_ERROR,
+            _query=sql_statement
+        )
 
         return {"log_id": log_id,
                 "status_code": "BAD",
