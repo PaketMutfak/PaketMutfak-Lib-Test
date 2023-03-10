@@ -1,6 +1,7 @@
 import time
 import mysql.connector
 from mysql.connector import errorcode, pooling
+from paketmutfak.utils.constants.log_levels import LogLevels
 
 
 class PmMysqlBaseClass:
@@ -119,7 +120,7 @@ class PmMysqlBaseClass:
                 _message=f"get_connection error: {poolErr}",
                 _func_name='execute',
                 _query=sql,
-                _level="CRITICAL_ERROR"
+                _level=LogLevels.CRITICAL_ERROR
             )
             return {"log_id": "log_id", "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
@@ -164,7 +165,7 @@ class PmMysqlBaseClass:
                 _message=f"get_connection error: {poolErr}",
                 _func_name='executemany',
                 _query=sql,
-                _level="CRITICAL_ERROR"
+                _level=LogLevels.CRITICAL_ERROR
             )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
@@ -222,7 +223,7 @@ class PmMysqlBaseClass:
                 _message=f"get_connection error: {poolErr}",
                 _func_name='executemany_without_commit',
                 _query=sql,
-                _level="CRITICAL_ERROR"
+                _level=LogLevels.CRITICAL_ERROR
             )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
@@ -253,7 +254,7 @@ class PmMysqlBaseClass:
                 _message=f"execute_without_commit: {poolErr}",
                 _func_name='executemany_without_commit',
                 _query=sql,
-                _level="CRITICAL_ERROR"
+                _level=LogLevels.CRITICAL_ERROR
             )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
@@ -282,7 +283,7 @@ class PmMysqlBaseClass:
             log_id, _ = self.pm_logger.insert_log(
                 _message=f"commit_without_execute: {poolErr}",
                 _func_name='executemany_without_commit',
-                _level="CRITICAL_ERROR"
+                _level=LogLevels.CRITICAL_ERROR
             )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
@@ -324,7 +325,7 @@ class PmMysqlBaseClass:
             log_id, _ = self.pm_logger.insert_log(
                 _message=f"commit_without_execute: {poolErr}",
                 _func_name='callprocedure',
-                _level="CRITICAL_ERROR"
+                _level=LogLevels.CRITICAL_ERROR
             )
             return {"log_id": log_id, "status": "BAD", "status_code": "BAD"}
         except mysql.connector.Error as err:
@@ -390,7 +391,7 @@ class PmMysqlBaseClass:
         log_id, _ = self.pm_logger.insert_log(
             _message=log_message.get("error_message"),
             _func_name='database_error_handling_to_log',
-            _level="CRITICAL_ERROR",
+            _level=LogLevels.CRITICAL_ERROR,
             _query=sql_statement
         )
 
