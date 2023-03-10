@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import errorcode, pooling
 from paketmutfak.utils.functions.general import init_extra_log_params, generate_uid
 from paketmutfak.utils.constants.error_codes import MessageCode
-import LogDbBase
+
 
 class PmMysqlBaseClass:
     _instance = None
@@ -25,7 +25,7 @@ class PmMysqlBaseClass:
         if cls._instance is None:
             print('Creating new instance')
             cls._instance = cls.__new__(cls)
-            cls.pm_logger: LogDbBase.LogRDS = pm_logger
+            cls.pm_logger = pm_logger
 
             res = {}
             cls.host = host
