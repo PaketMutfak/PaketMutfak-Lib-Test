@@ -80,8 +80,8 @@ class LogRDS(PmMysqlBaseClass):
                 user_agent = None
                 base_url = _request.base_url
                 endpoint = _request.path
-                if type(request.json) == dict:
-                    body = json.dumps(request.json)
+                if type(_request.json) == dict:
+                    body = json.dumps(_request.json)
                 # json.dumps({
                 #     "browser": _request.user_agent.browser,
                 #     "language": _request.user_agent.language,
