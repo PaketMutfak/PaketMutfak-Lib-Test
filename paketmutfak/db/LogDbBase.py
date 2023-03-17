@@ -61,6 +61,7 @@ class LogRDS(PmMysqlBaseClass):
         user_agent = None
         base_url = None
         endpoint = None
+        body = None
 
         query = None
 
@@ -79,7 +80,8 @@ class LogRDS(PmMysqlBaseClass):
                 user_agent = None
                 base_url = _request.base_url
                 endpoint = _request.path
-
+                if type(request.json) == dict:
+                    body = json.dumps(request.json)
                 # json.dumps({
                 #     "browser": _request.user_agent.browser,
                 #     "language": _request.user_agent.language,
@@ -100,10 +102,10 @@ class LogRDS(PmMysqlBaseClass):
 
             insert_service_logs_query = f"INSERT INTO Service_Logs (id, service_name, message, short_message, " \
                                         f"func_name, line_no, headers, level, full_path, request_method, " \
-                                        f"user_agent, base_url, endpoint, query, `utc_date`) " \
+                                        f"user_agent, base_url, endpoint, query, body, `utc_date`) " \
                                         f"VALUES (%(log_id)s, %(service_name)s , %(message)s, %(short_message)s, %(func_name)s, " \
                                         f"%(line_no)s, %(headers)s, %(level)s, %(full_path)s, %(request_method)s, " \
-                                        f"%(user_agent)s, %(base_url)s, %(endpoint)s, %(query)s, %(utc_date)s);"
+                                        f"%(user_agent)s, %(base_url)s, %(endpoint)s, %(query)s, %(body)s, %(utc_date)s);"
 
             log_id = generate_uid()
             utc_date = str(date.today())
@@ -123,6 +125,7 @@ class LogRDS(PmMysqlBaseClass):
                 'base_url': base_url,
                 'endpoint': endpoint,
                 'query': query,
+                'body': body,
                 'utc_date': utc_date
             }
 
