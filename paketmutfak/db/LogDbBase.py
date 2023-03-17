@@ -146,3 +146,6 @@ class LogRDS(PmMysqlBaseClass):
             return str(ex), 500
         else:
             return log_id, 200
+
+    def get_service_name(self):
+        return self.service_name
