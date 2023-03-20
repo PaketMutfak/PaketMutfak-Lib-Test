@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.4 (2023-03-20)
+### Fix
+* Change release.yml ([`931456d`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/931456d418884e8072d3f91a21c72b39639e0116))
+
 ## v1.1.3 (2023-03-20)
 ### Fix
 * Change github tokens ([`3676c61`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/3676c6192ed380d8622ad2578ad4713bbaf915f3))
