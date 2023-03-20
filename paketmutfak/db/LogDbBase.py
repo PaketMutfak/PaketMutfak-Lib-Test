@@ -43,7 +43,7 @@ def edit_request_headers(_headers):
 class LogRDS(PmMysqlBaseClass):
     """
                 create a pool when connect mysql, which will decrease the time spent in
-                request connection, create connection and close connection.
+                request connection, create connection and close connection .
                 """
 
     def __init__(self, service_name):
