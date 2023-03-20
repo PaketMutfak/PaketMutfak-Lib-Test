@@ -386,7 +386,7 @@ class PmMysqlBaseClass:
                                'sql_statement': sql_statement,
                                'errno': error.errno}
         else:
-            log_message = {'status': 'BAD', 'error_message': f"Something went wrong on : "}
+            log_message = {'status': 'BAD', 'error_message': "Something went wrong on"}
 
         if error.errno == errorcode.ER_DUP_ENTRY:
             service_name = self.pm_logger.get_service_name()

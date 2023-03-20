@@ -4,7 +4,6 @@ from paketmutfak.db.sql_db_base_class import PmMysqlBaseClass
 from datetime import date
 from flask import request
 from enum import Enum
-import inspect
 import json
 
 
@@ -100,12 +99,12 @@ class LogRDS(PmMysqlBaseClass):
 
                 return respond_error_data, 500
 
-            insert_service_logs_query = f"INSERT INTO Service_Logs (id, service_name, message, short_message, " \
-                                        f"func_name, line_no, headers, level, full_path, request_method, " \
-                                        f"user_agent, base_url, endpoint, query, body, `utc_date`) " \
-                                        f"VALUES (%(log_id)s, %(service_name)s , %(message)s, %(short_message)s, %(func_name)s, " \
-                                        f"%(line_no)s, %(headers)s, %(level)s, %(full_path)s, %(request_method)s, " \
-                                        f"%(user_agent)s, %(base_url)s, %(endpoint)s, %(query)s, %(body)s, %(utc_date)s);"
+            insert_service_logs_query = "INSERT INTO Service_Logs (id, service_name, message, short_message, " \
+                                        "func_name, line_no, headers, level, full_path, request_method, " \
+                                        "user_agent, base_url, endpoint, query, body, `utc_date`) " \
+                                        "VALUES (%(log_id)s, %(service_name)s , %(message)s, %(short_message)s, %(func_name)s, " \
+                                        "%(line_no)s, %(headers)s, %(level)s, %(full_path)s, %(request_method)s, " \
+                                        "%(user_agent)s, %(base_url)s, %(endpoint)s, %(query)s, %(body)s, %(utc_date)s);"
 
             log_id = generate_uid()
             utc_date = str(date.today())

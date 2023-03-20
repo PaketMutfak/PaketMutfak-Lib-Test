@@ -28,5 +28,3 @@ setup(
                       'beartype',
                       'flask'],
 )
-
-

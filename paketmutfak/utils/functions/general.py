@@ -144,6 +144,7 @@ def generate_token():
 
     return decoded
 
+
 """
 @application.errorhandler(400)
 def bad_request(error):
