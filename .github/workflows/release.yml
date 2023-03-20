@@ -60,4 +60,4 @@ jobs:
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
-          repository_url: https://github.com/PaketMutfak/PaketMutfak-Lib-Test/
+          verbose: true
