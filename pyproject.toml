@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "paketmutfak"
-version = "1.0.0"
+version = "1.1.0"
 description = "Library of code for working with paket mutfak"
 authors = ["Paket Mutfak <dev@paketmutfak.com.tr>"]
 readme = "README.md"
@@ -15,7 +15,6 @@ slugify = "0.0.1"
 PyJWT = "2.4.0"
 setuptools = "57.0.0"
 beartype = "0.10.4"
-paketmutfak = "1.0.4"
 DateTime = "4.4"
 uuid = "1.30"
 Flask = "2.2.3"
@@ -30,7 +29,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.semantic_release]
-version_variable = "setup.py:__version__" # version location
+version_variable = "pyproject.toml:version" # version location
 branch = "main"                             # branch to make releases of
 changelog_file = "CHANGELOG.md"             # changelog file
 build_command = "poetry build"              # build dists
