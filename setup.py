@@ -3,9 +3,12 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+
+__version__ = "1.0.22"
+
 setup(
     name='paketmutfak',
-    version='0.2.10',
+    version=__version__,
     author='Paket Mutfak',
     author_email='dev@paketmutfak.com.tr',
     description='Testing installation of Package',
