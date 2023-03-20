@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.5 (2023-03-20)
+### Fix
+* Change pyproject.toml ([`9406901`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/9406901b83a91f43138e110216561c302e10aafb))
+
 ## v1.1.4 (2023-03-20)
 ### Fix
 * Change release.yml ([`931456d`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/931456d418884e8072d3f91a21c72b39639e0116))
