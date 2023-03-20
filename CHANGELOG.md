@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.6 (2023-03-20)
+
+
 ## v1.1.5 (2023-03-20)
 ### Fix
 * Change pyproject.toml ([`9406901`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/9406901b83a91f43138e110216561c302e10aafb))
