@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.3 (2023-03-20)
+### Fix
+* Change github tokens ([`3676c61`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/3676c6192ed380d8622ad2578ad4713bbaf915f3))
+
 ## v1.1.2 (2023-03-20)
 ### Fix
 * Comments ([`e10510e`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/e10510eca1e690c9a1cd1b645a8efa18f852a604))
