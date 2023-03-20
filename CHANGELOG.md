@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.2 (2023-03-20)
+### Fix
+* Comments ([`e10510e`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/e10510eca1e690c9a1cd1b645a8efa18f852a604))
+
 ## v1.1.1 (2023-03-20)
 ### Fix
 * Pyproject.toml file and deleted setup files ([`b430c0c`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/b430c0c378aeb03780311a8c7b9540ef0eacb149))
