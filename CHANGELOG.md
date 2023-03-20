@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.1 (2023-03-20)
+### Fix
+* Pyproject.toml file and deleted setup files ([`b430c0c`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/b430c0c378aeb03780311a8c7b9540ef0eacb149))
+* Pyproject.toml name ([`811ca7b`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/811ca7b1677e9c2d523aa66d3621b5565926c797))
+
 ## v1.1.0 (2023-03-20)
 ### Feature
 * Added workflow for release ([`6a2e65a`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/6a2e65a1a666979eb62298be37e0ce9311630c58))
