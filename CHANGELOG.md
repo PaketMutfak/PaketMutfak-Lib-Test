@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.8 (2023-03-22)
+### Fix
+* Comment ([`4016deb`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/4016debc29e4a33ecdf2e54026536ed9825ef417))
+
 ## v1.1.7 (2023-03-21)
 ### Fix
 * Check `errno` key in error ([`22e1d40`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/22e1d406034ed84684f859b06857c42cadba0508))
