@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.9 (2023-03-22)
+### Fix
+* Poetry lock ([`18710d4`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/18710d4bda3048a8c7d019cd87841c4d3e94a9a1))
+
 ## v1.1.8 (2023-03-22)
 ### Fix
 * Comment ([`4016deb`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/4016debc29e4a33ecdf2e54026536ed9825ef417))
