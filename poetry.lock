@@ -137,7 +137,7 @@ crt = ["awscrt (==0.14.0)"]
 name = "certifi"
 version = "2022.12.7"
 description = "Python package for providing Mozilla's CA Bundle."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -226,7 +226,7 @@ pycparser = "*"
 name = "charset-normalizer"
 version = "3.1.0"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7.0"
 files = [
@@ -524,7 +524,7 @@ gitdb = ">=4.0.1,<5"
 name = "idna"
 version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.5"
 files = [
@@ -829,17 +829,6 @@ files = [
 ]
 
 [[package]]
-name = "mysql-connector"
-version = "2.2.9"
-description = "MySQL driver written in Python"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "mysql-connector-2.2.9.tar.gz", hash = "sha256:1733e6ce52a049243de3264f1fbc22a852cb35458c4ad739ba88189285efdf32"},
-]
-
-[[package]]
 name = "packaging"
 version = "23.0"
 description = "Core utilities for Python packages"
@@ -850,27 +839,6 @@ files = [
     {file = "packaging-23.0-py3-none-any.whl", hash = "sha256:714ac14496c3e68c99c29b00845f7a2b85f3bb6f1078fd9f72fd20f0570002b2"},
     {file = "packaging-23.0.tar.gz", hash = "sha256:b6ad297f8907de0fa2fe1ccbd26fdaf387f5f47c7275fedf8cce89f99446cf97"},
 ]
-
-[[package]]
-name = "paketmutfak"
-version = "1.0.4"
-description = "Testing installation of Package"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "paketmutfak-1.0.4-py3-none-any.whl", hash = "sha256:933281088dd4764e00140fce0ec03cbed993e679600c736be1179c7afd635f89"},
-]
-
-[package.dependencies]
-boto3 = "*"
-datetime = "*"
-iso8601 = "*"
-mysql-connector = "*"
-PyJWT = "*"
-requests = "*"
-slugify = "*"
-uuid = "*"
 
 [[package]]
 name = "pathspec"
@@ -1139,7 +1107,7 @@ md = ["cmarkgfm (>=0.8.0)"]
 name = "requests"
 version = "2.28.2"
 description = "Python HTTP for Humans."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7, <4"
 files = [
@@ -1507,4 +1475,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "3ecd8685e66b742dbf826e01a96ef20a7a8636334a8abeef1e679eff01dd10af"
+content-hash = "820ad40e5db99783c4d2473c41f0dd959d5ff5f328f560971c982c5261e3bc21"
