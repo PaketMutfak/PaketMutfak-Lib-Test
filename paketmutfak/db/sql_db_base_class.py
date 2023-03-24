@@ -346,6 +346,7 @@ class PmMysqlBaseClass:
 
     def database_error_handling_to_log(self, error, sql_statement):
         pm_db_errno = -1
+        log_message = {}
         if "errno" in error.__dict__:
             pm_db_errno = error.errno
             if error.errno == errorcode.ER_BAD_TABLE_ERROR:
@@ -380,6 +381,14 @@ class PmMysqlBaseClass:
                 log_message = {'status': 'BAD',
                                'error_message': f"Error : {error}",
                                'sql_statement': sql_statement}
+
+            elif error.errno == errorcode.ER_DUP_ENTRY:
+                service_name = self.pm_logger.get_service_name()
+                if service_name == "Orders":
+                    return {"log_id": "Orders duplicate error",
+                            "status_code": "BAD",
+                            "sql_error_code": pm_db_errno,
+                            "error_message": error}
             else:
                 log_message = {'status': 'BAD',
                                'error_message': f"Error : {error}",
@@ -387,14 +396,6 @@ class PmMysqlBaseClass:
                                'errno': error.errno}
         else:
             log_message = {'status': 'BAD', 'error_message': f"Something went wrong on : "}
-
-        if error.errno == errorcode.ER_DUP_ENTRY:
-            service_name = self.pm_logger.get_service_name()
-            if service_name == "Orders":
-                return {"log_id": "Orders duplicate error",
-                        "status_code": "BAD",
-                        "sql_error_code": pm_db_errno,
-                        "error_message": log_message.get("error_message")}
 
         log_id, _ = self.pm_logger.insert_log(
             _message=log_message.get("error_message"),
