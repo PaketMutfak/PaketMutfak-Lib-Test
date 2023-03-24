@@ -384,11 +384,18 @@ class PmMysqlBaseClass:
 
             elif error.errno == errorcode.ER_DUP_ENTRY:
                 service_name = self.pm_logger.get_service_name()
+
                 if service_name == "Orders":
                     return {"log_id": "Orders duplicate error",
                             "status_code": "BAD",
                             "sql_error_code": pm_db_errno,
-                            "error_message": error}
+                            "error_message": f"Error : {error}"}
+                else:
+                    log_message = {'status': 'BAD',
+                                   'error_message': f"Error : {error}",
+                                   'sql_statement': sql_statement,
+                                   'errno': error.errno}
+
             else:
                 log_message = {'status': 'BAD',
                                'error_message': f"Error : {error}",
