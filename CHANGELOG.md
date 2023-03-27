@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.13 (2023-03-27)
+### Fix
+* Added gitignore ([`41ce0bf`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/41ce0bf596f6e2e4907ad0ad553ce25ef42347f4))
+
 ## v1.1.9 (2023-03-22)
 ### Fix
 * Poetry lock ([`18710d4`](https://github.com/PaketMutfak/PaketMutfak-Lib-Test/commit/18710d4bda3048a8c7d019cd87841c4d3e94a9a1))
