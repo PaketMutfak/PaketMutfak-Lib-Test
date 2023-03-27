@@ -1,9 +1,13 @@
 [tool.poetry]
 name = "paketmutfak"
-version = "1.1.9"
+version = "1.1.12"
 description = "Library of code for working with paket mutfak"
 authors = ["Paket Mutfak <dev@paketmutfak.com.tr>"]
 readme = "README.md"
+repository = "https://github.com/PaketMutfak/PaketMutfak-Lib-Test"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/PaketMutfak/PaketMutfak-Lib-Test/issues"
 
 [tool.poetry.dependencies]
 python = "^3.9"
