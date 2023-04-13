@@ -151,9 +151,9 @@ class PlatformNames:
     ADDITIONAL = "Ek Sipariş"
 
 
-Platforms = Enum('Platforms', ['yemeksepeti', 'getir', 'trendyol', 'migros', 'fuudy'])
-PlatformArray = [Platforms.yemeksepeti.name, Platforms.getir.name, Platforms.trendyol.name,
-                 Platforms.migros.name, Platforms.fuudy.name]
+PlatformEnum = Enum('Platforms', ['yemeksepeti', 'getir', 'trendyol', 'migros', 'fuudy'])
+PlatformArray = [PlatformEnum.yemeksepeti.name, PlatformEnum.getir.name, PlatformEnum.trendyol.name,
+                 PlatformEnum.migros.name, PlatformEnum.fuudy.name]
 
 
 class BuildingRegionstatus:
