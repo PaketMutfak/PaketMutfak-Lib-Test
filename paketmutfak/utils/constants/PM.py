@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class OTMCommandTypes:
     COMMAND_TYPE_CREATE = "Oluşturma"
     COMMAND_TYPE_DELETE = "Silme"
@@ -146,6 +149,11 @@ class PlatformNames:
     HAND_DELIVERY = "Gel Al Siparişi"
     PM_EMPLOYEE = "Paket Mutfak Çalışan Siparişi"
     ADDITIONAL = "Ek Sipariş"
+
+
+Platforms = Enum('Platforms', ['yemeksepeti', 'getir', 'trendyol', 'migros', 'fuudy'])
+PlatformArray = [Platforms.yemeksepeti.name, Platforms.getir.name, Platforms.trendyol.name,
+                 Platforms.migros.name, Platforms.fuudy.name]
 
 
 class BuildingRegionstatus:
