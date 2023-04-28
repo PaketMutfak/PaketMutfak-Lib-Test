@@ -385,6 +385,7 @@ class PmMysqlBaseClass:
                 if service_name == "Orders":
                     return {"log_id": "Orders duplicate error",
                             "status_code": "BAD",
+                            "message_code": 130,
                             "sql_error_code": pm_db_errno,
                             "error_message": f"Error : {error}"}
                 else:
