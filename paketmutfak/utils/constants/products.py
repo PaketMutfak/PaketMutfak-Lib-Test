@@ -1,27 +1,33 @@
 from dataclasses import dataclass
+from typing import Union
+
+from paketmutfak.utils.functions.general import generate_uid
 
 
 @dataclass
-class PlatformProductFormat:
-    id: str
+class PlatformOption:
     name: str
-    platform_id: str
-    description: str
-    title: str
+    platform_product_id: str
+    platform_option_id: str
     price: str
-    pm_restaurant_id: str
-    options: list
-    status: bool
-
-
-@dataclass
-class PlatformProductOptionFormat:
-    id: str
     type: str
+    pm_restaurant_id: str
+    platform_name: str
+    id: str = generate_uid()
+
+
+@dataclass
+class PlatformProduct:
+    id: str
+    platform_product_id: str
     name: str
     description: str
     price: str
     title: str
+    pm_restaurant_id: str
+    status: bool
+    platform_name: str
+    preparation_time: Union[str, None] = None
 
 
 @dataclass
