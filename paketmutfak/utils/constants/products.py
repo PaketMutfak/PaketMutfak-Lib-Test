@@ -38,7 +38,7 @@ class PMProduct:
     price: float
     hash_id: str
     options: list['PMProduct']
-    quantity: float
+    quantity: int
     unit_price: float
     extra_ingredients: list['PMProductExtraIngredients']
     removed_ingredients: list
