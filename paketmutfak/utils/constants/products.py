@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 from typing import Union
 
-from paketmutfak.utils.functions.general import generate_uid
-
 
 @dataclass
 class PlatformOption:
@@ -13,7 +11,7 @@ class PlatformOption:
     type: str
     pm_restaurant_id: str
     platform_name: str
-    id: str = generate_uid()
+    id: str
 
 
 @dataclass
