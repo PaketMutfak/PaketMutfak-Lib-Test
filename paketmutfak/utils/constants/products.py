@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Union
+from typing import Union, List
 
 
 @dataclass
@@ -29,20 +29,6 @@ class PlatformProduct:
 
 
 @dataclass
-class PMProduct:
-    id: str
-    name: str
-    note: str
-    price: float
-    hash_id: str
-    options: list['PMProduct']
-    quantity: int
-    unit_price: float
-    extra_ingredients: list['PMProductExtraIngredients']
-    removed_ingredients: list
-
-
-@dataclass
 class PMProductExtraIngredients:
     id: str
     name: str
@@ -53,3 +39,20 @@ class PMProductExtraIngredients:
 class PMProductRemovedIngredients:
     id: str
     name: str
+
+
+@dataclass
+class PMProduct:
+    id: str
+    name: str
+    note: str
+    price: float
+    hash_id: str
+    options: List['PMProduct']
+    quantity: int
+    unit_price: float
+    extra_ingredients: List[PMProductExtraIngredients]
+    removed_ingredients: List[PMProductRemovedIngredients]
+
+
+
