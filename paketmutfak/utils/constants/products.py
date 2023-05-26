@@ -42,13 +42,23 @@ class PMProductRemovedIngredients:
 
 
 @dataclass
+class PMOption:
+    option_id: str
+    product_id: str
+    name: str
+    quantity: int
+    price: float
+    options: List['PMOption']
+
+
+@dataclass
 class PMProduct:
     id: str
     name: str
     note: str
     price: float
     hash_id: str
-    options: List['PMProduct']
+    options: List[PMOption]
     quantity: int
     unit_price: float
     extra_ingredients: List[PMProductExtraIngredients]
