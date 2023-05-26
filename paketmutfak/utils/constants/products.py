@@ -45,6 +45,7 @@ class PMProductRemovedIngredients:
 class PMOption:
     option_id: str
     product_id: str
+    category_name: str
     name: str
     quantity: int
     price: float
