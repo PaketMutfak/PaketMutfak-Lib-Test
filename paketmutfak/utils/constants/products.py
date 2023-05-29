@@ -50,7 +50,7 @@ class PMOption:
     quantity: int
     price: float
     options: List['PMOption']
-
+    excluded: bool
 
 @dataclass
 class PMProduct:
@@ -66,4 +66,58 @@ class PMProduct:
     removed_ingredients: List[PMProductRemovedIngredients]
 
 
+@dataclass
+class PmRegion:
+    region: str
+    full_address: str
+    longitude: float
+    latitude: float
 
+
+@dataclass
+class PmAddress:
+    city: str
+    doorNumber: str
+    district: str
+    latitude: float
+    longitude: float
+    address_description: str
+    company: str
+    full_address: str
+    neighborhood: str
+    floor: str
+    street: str
+    apartmentNumber: str
+
+
+@dataclass
+class PMCustomerInfo:
+    email: str
+    full_name: str
+    address: PmAddress
+    phone: str
+
+
+@dataclass
+class PMFormat:
+    address_id: str
+    customer_type: str
+    delivery_method: str
+    discount_price: float
+    order_contents: list
+    order_note: str
+    order_type: str
+    original_request: dict
+    payment_location: str
+    payment_method: str
+    platform_code: str
+    platform_confirmation_code: str
+    platform_delivery_price: int
+    platform_name: str
+    pm_restaurant_id: str
+    promotions: list
+    total_price: float
+    is_scheduled_order: bool
+    scheduled_display_date: str
+    verification_code: str
+    has_restaurant_transfer_payment: str
