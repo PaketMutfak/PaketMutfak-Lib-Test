@@ -77,7 +77,7 @@ class PmRegion:
 @dataclass
 class PmAddress:
     city: str
-    doorNumber: str
+    door_number: str
     district: str
     latitude: float
     longitude: float
@@ -87,7 +87,7 @@ class PmAddress:
     neighborhood: str
     floor: str
     street: str
-    apartmentNumber: str
+    apartment_number: str
 
 
 @dataclass
@@ -121,3 +121,5 @@ class PMFormat:
     scheduled_display_date: str
     verification_code: str
     has_restaurant_transfer_payment: str
+    customer_info: PMCustomerInfo
+    region: PmRegion
