@@ -95,7 +95,7 @@ class PMCustomerInfo:
     email: str
     full_name: str
     address: PmAddress
-    phone: str
+    phone: List
 
 
 @dataclass
@@ -121,5 +121,6 @@ class PMFormat:
     scheduled_display_date: str
     verification_code: str
     has_restaurant_transfer_payment: str
+    platform_user_id: str
     customer_info: PMCustomerInfo
     region: PmRegion
