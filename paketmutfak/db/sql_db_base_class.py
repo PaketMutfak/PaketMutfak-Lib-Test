@@ -76,7 +76,7 @@ class PmMysqlBaseClass:
             respond = self.database_error_handling_to_log(error=exp, sql_statement="")
             return respond
 
-    def execute(self, sql, args=None, commit=False, column_names=False):
+    def execute(self, sql, args=None, commit=False, column_names=False, dictionary=False):
         """
         Execute db sql, it could be with args and with out args. The usage is
         similar with execute() function in module pymysql.
@@ -90,7 +90,7 @@ class PmMysqlBaseClass:
         conn = None
         cursor = None
         try:
-            conn, cursor = self.get_connection_conn_cursor()
+            conn, cursor = self.get_connection_conn_cursor(dictionary)
 
             if args:
                 cursor.execute(sql, args)
@@ -179,9 +179,9 @@ class PmMysqlBaseClass:
             respond = self.database_error_handling_to_log(error=exp, sql_statement=sql)
             return respond
 
-    def get_connection_conn_cursor(self, timeout=10, retry_period=0.1):
+    def get_connection_conn_cursor(self, timeout=10, retry_period=0.1, dictionary=False):
         try:
-            conn, cursor = self._get_connection_conn_cursor_helper()
+            conn, cursor = self._get_connection_conn_cursor_helper(dictionary)
 
             if timeout < retry_period:
                 return {"message_code": "Timeout must be greater than retry period"}, 400
@@ -199,10 +199,10 @@ class PmMysqlBaseClass:
         else:
             return conn, cursor
 
-    def _get_connection_conn_cursor_helper(self):
+    def _get_connection_conn_cursor_helper(self, dictionary=False):
         try:
             conn = self.pool.get_connection()
-            cursor = conn.cursor()
+            cursor = conn.cursor(dictionary=dictionary)
         except mysql.connector.Error as err:
             respond = self.database_error_handling_to_log(error=err, sql_statement="Connection Pool Error")
             return respond, None
