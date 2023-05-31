@@ -17,3 +17,12 @@ PAYMENT_PER_BASKET = 3.0
 DYNAMO_DB_NULL_INDEX = 'N'
 BASKET_STATUS_SHELF = "SHELF"
 BASKET_STATUS_ON_THE_WAY = "ONTHEWAY"
+lower_map = {
+    ord("I"): "ı",
+    ord("İ"): "i",
+    ord("Ü"): "ü",
+    ord("Ç"): "ç",
+    ord("Ş"): "ş",
+    ord("Ö"): "ö",
+    ord("Ğ"): "ğ"
+}
