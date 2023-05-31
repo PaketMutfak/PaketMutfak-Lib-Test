@@ -90,7 +90,7 @@ class PmMysqlBaseClass:
         conn = None
         cursor = None
         try:
-            conn, cursor = self.get_connection_conn_cursor(dictionary)
+            conn, cursor = self.get_connection_conn_cursor(dictionary=dictionary)
 
             if args:
                 cursor.execute(sql, args)
@@ -181,7 +181,7 @@ class PmMysqlBaseClass:
 
     def get_connection_conn_cursor(self, timeout=10, retry_period=0.1, dictionary=False):
         try:
-            conn, cursor = self._get_connection_conn_cursor_helper(dictionary)
+            conn, cursor = self._get_connection_conn_cursor_helper(dictionary=dictionary)
 
             if timeout < retry_period:
                 return {"message_code": "Timeout must be greater than retry period"}, 400
