@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from typing import Union, List
-from decimal import Decimal
 
 
 @dataclass
@@ -104,7 +103,7 @@ class PMFormat:
     address_id: str
     customer_type: str
     delivery_method: str
-    discount_price: Decimal
+    discount_price: float
     order_contents: list
     order_note: str
     order_type: str
@@ -113,11 +112,11 @@ class PMFormat:
     payment_method: str
     platform_code: str
     platform_confirmation_code: str
-    platform_delivery_price: Decimal
+    platform_delivery_price: float
     platform_name: str
     pm_restaurant_id: str
     promotions: list
-    total_price: Decimal
+    total_price: float
     is_scheduled_order: bool
     scheduled_display_date: str
     verification_code: str
