@@ -123,4 +123,5 @@ class PMFormat:
     has_restaurant_transfer_payment: int
     platform_user_id: str
     customer_info: PMCustomerInfo
-    region: PmRegion
+    brand_name: str
+    slack_channel_id: str
