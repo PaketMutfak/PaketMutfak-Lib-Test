@@ -123,7 +123,7 @@ class PmPrice:
 
 @dataclass
 class PmScheduled:
-    is_scheduled_order: str
+    is_scheduled_order: bool
     scheduled_display_date: str
 
 
@@ -151,3 +151,9 @@ class PMFormat:
     customer_info: PMCustomerInfo
     region: PmRegion
     slack_channel_id: str
+    platform: PmPlatform
+    payment: PmPayment
+    order: PmOrder
+    price: PmPrice
+    scheduled: PmScheduled
+    brand: PmBrand
