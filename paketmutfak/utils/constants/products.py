@@ -52,6 +52,7 @@ class PMOption:
     options: List['PMOption']
     excluded: bool
 
+
 @dataclass
 class PMProduct:
     id: str
@@ -76,6 +77,7 @@ class PmRegion:
 
 @dataclass
 class PmAddress:
+    address_id: str
     city: str
     door_number: str
     district: str
@@ -89,6 +91,48 @@ class PmAddress:
     street: str
     apartment_number: str
 
+#
+@dataclass
+class Platform:
+    platform_code: str
+    platform_confirmation_code: str
+    platform_delivery_price: float
+    platform_name: str
+    platform_user_id: str
+
+
+@dataclass
+class Payment:
+    payment_location: str
+    payment_method: str
+
+
+@dataclass
+class Order:
+    order_contents: List
+    order_note: str
+    order_type: str
+    promotions: List
+
+
+@dataclass
+class Price:
+    discount_price: float
+    total_price: float
+
+
+@dataclass
+class SCHEDULED:
+    is_scheduled_order: str
+    scheduled_display_date: str
+
+
+@dataclass
+class Brand:
+    pm_restaurant_id: str
+    has_restaurant_transfer_payment: int
+    brand_name: str
+
 
 @dataclass
 class PMCustomerInfo:
@@ -96,32 +140,14 @@ class PMCustomerInfo:
     full_name: str
     address: PmAddress
     phone: List
+    customer_type: str
 
 
 @dataclass
 class PMFormat:
-    address_id: str
-    customer_type: str
     delivery_method: str
-    discount_price: float
-    order_contents: list
-    order_note: str
-    order_type: str
     original_request: dict
-    payment_location: str
-    payment_method: str
-    platform_code: str
-    platform_confirmation_code: str
-    platform_delivery_price: float
-    platform_name: str
-    pm_restaurant_id: str
-    promotions: list
-    total_price: float
-    is_scheduled_order: bool
-    scheduled_display_date: str
     verification_code: str
-    has_restaurant_transfer_payment: int
-    platform_user_id: str
     customer_info: PMCustomerInfo
-    brand_name: str
+    region: PmRegion
     slack_channel_id: str
