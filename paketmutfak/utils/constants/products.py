@@ -93,7 +93,7 @@ class PmAddress:
 
 #
 @dataclass
-class Platform:
+class PmPlatform:
     platform_code: str
     platform_confirmation_code: str
     platform_delivery_price: float
@@ -102,13 +102,13 @@ class Platform:
 
 
 @dataclass
-class Payment:
+class PmPayment:
     payment_location: str
     payment_method: str
 
 
 @dataclass
-class Order:
+class PmOrder:
     order_contents: List
     order_note: str
     order_type: str
@@ -116,19 +116,19 @@ class Order:
 
 
 @dataclass
-class Price:
+class PmPrice:
     discount_price: float
     total_price: float
 
 
 @dataclass
-class SCHEDULED:
+class PmScheduled:
     is_scheduled_order: str
     scheduled_display_date: str
 
 
 @dataclass
-class Brand:
+class PmBrand:
     pm_restaurant_id: str
     has_restaurant_transfer_payment: int
     brand_name: str
