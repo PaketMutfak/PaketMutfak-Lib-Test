@@ -55,7 +55,7 @@ class PMOption:
 
 @dataclass
 class PMProduct:
-    id: str
+    product_id: str
     name: str
     note: str
     price: float
@@ -65,7 +65,6 @@ class PMProduct:
     unit_price: float
     extra_ingredients: List[PMProductExtraIngredients]
     removed_ingredients: List[PMProductRemovedIngredients]
-
 
 @dataclass
 class PmRegion:
