@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Union, List
+from typing import Union, List, Optional
 
 
 @dataclass
@@ -70,8 +70,8 @@ class PMProduct:
 class PmRegion:
     region: str
     full_address: str
-    longitude: float
-    latitude: float
+    longitude: Optional[float]
+    latitude: Optional[float]
 
 
 @dataclass
