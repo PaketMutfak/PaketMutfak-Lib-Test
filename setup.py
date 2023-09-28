@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-__version__ = "1.1.41"
+__version__ = "1.1.42"
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
@@ -28,5 +28,6 @@ setup(
                       'slugify',
                       'PyJWT',
                       'beartype',
-                      'flask'],
+                      'flask',
+                      "python-ulid"],
 )
