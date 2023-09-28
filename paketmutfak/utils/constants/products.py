@@ -76,7 +76,6 @@ class PmRegion:
 
 @dataclass
 class PmAddress:
-    address_id: str
     city: str
     door_number: str
     district: str
@@ -95,7 +94,6 @@ class PmAddress:
 class PmPlatform:
     platform_code: str
     platform_confirmation_code: str
-    platform_delivery_price: float
     platform_name: str
     platform_user_id: str
 
@@ -129,7 +127,6 @@ class PmScheduled:
 @dataclass
 class PmBrand:
     pm_restaurant_id: str
-    has_restaurant_transfer_payment: int
     brand_name: str
 
 

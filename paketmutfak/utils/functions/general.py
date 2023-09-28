@@ -12,11 +12,15 @@ from paketmutfak.utils.constants.parameters import PAREKENDE_SATIS_FISI_LIMIT, T
     PAYMENT_PER_BASKET
 from paketmutfak.utils.constants.platforms import BrandsPlatformStatus
 from math import sin, radians, cos, asin, sqrt
+from ulid import ULID
 
 
 def generate_uid():
     return datetime.now().strftime('%Y%m-%d%H-%M%S-') + str(uuid4())
 
+
+def generate_ulid():
+    return str(ULID())
 
 def init_extra_log_params(log_id, sql_error_code=None, sql_statement=None, db_name=None, table_name=None,
                           request=None, args=None, error_code=None):

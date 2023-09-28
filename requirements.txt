@@ -9,3 +9,4 @@ paketmutfak~=1.0.4
 DateTime~=4.4
 uuid~=1.30
 Flask~=2.2.3
+python-ulid==2.2.0
